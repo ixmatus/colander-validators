@@ -1,6 +1,46 @@
 import re
 
 
+def email(value):
+
+    usernameRE = re.compile(r"^[^ \t\n\r@<>()]+$", re.I)
+    domainRE = re.compile(r'''
+        ^(?:[a-z0-9][a-z0-9\-]{0,62}\.)+ # (sub)domain - alpha followed by 62max chars (63 total)
+        [a-z]{2,}$                       # TLD
+    ''', re.I | re.VERBOSE)
+
+    messages = dict(
+        empty='Please enter an email address',
+        noAt='An email address must contain a single @',
+        badUsername='The username portion of the email address is invalid'
+                    ' (the portion before the @: {username!s}',
+        socketError='An error occured when trying to connect to the server:'
+                    ' {error!s}',
+        badDomain='The domain portion of the email address is invalid'
+                  ' (the portion after the @: {domain!s}',
+        domainDoesNotExist='The domain of the email address does not exist'
+                           ' (the portion after the @: {domain!s}')
+
+    if not value:
+        return messages['empty']
+
+    value = value.strip()
+    splitted = value.split('@', 1)
+
+    try:
+        username, domain=splitted
+    except ValueError:
+        return messages['noAt']
+
+    if not usernameRE.search(username):
+        return messages['badUsername'].format(username=username)
+
+    if not domainRE.search(domain):
+        return messages['badDomain'].format(domain=domain)
+
+    return True
+
+
 def url(value):
     """Validate a URL completely
 
