@@ -2,6 +2,13 @@ import re
 
 
 def email(value):
+    """Validate an email address
+    
+    >>> email("barney@purpledino.com")
+    True
+    >>> email("barneydino.com")
+    'An email address must contain a single @'
+    """
 
     usernameRE = re.compile(r"^[^ \t\n\r@<>()]+$", re.I)
     domainRE = re.compile(r'''

@@ -1,7 +1,10 @@
 import sys
-from setuptools import setup, find_packages
+from distutils.core import setup
 
-version = '0.0.2'
+version = '0.0.3'
+
+with open("LICENSE", 'r') as f:
+    LICENSE = f.read()
 
 setup(name="colander-validators",
       version=version,
@@ -14,8 +17,6 @@ setup(name="colander-validators",
       author="Parnell Springmeyer",
       author_email="ixmatus@gmail.com",
       url="http://github.com/ixmatus/colander-validators",
-      license="PSF",
-      zip_safe=False,
-      packages=find_packages(),
-      include_package_data=True
+      license=LICENSE,
+      packages=["colander_validators"]
       )
