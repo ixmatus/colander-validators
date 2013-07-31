@@ -1,7 +1,7 @@
 import sys
 from distutils.core import setup
 
-version = '0.0.3'
+version = '0.0.4'
 
 with open("LICENSE", 'r') as f:
     LICENSE = f.read()
@@ -18,5 +18,6 @@ setup(name="colander-validators",
       author_email="ixmatus@gmail.com",
       url="http://github.com/ixmatus/colander-validators",
       license=LICENSE,
+      data_files=[('', ["LICENSE", "README.md", "CHANGES", "DEBT"])],
       packages=["colander_validators"]
       )
