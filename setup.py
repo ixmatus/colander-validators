@@ -1,7 +1,7 @@
 import sys
 from distutils.core import setup
 
-version = '0.0.4'
+version = '0.0.4.1'
 
 with open("LICENSE", 'r') as f:
     LICENSE = f.read()
